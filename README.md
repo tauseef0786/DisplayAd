@@ -1,4 +1,22 @@
 # DisplayAd
+
+A responsive, interactive travel quiz advertisement built with React and TypeScript. The ad features a geography quiz followed by a promotional video.
+
+## Specifications
+
+- Dimensions: 300px × 600px
+- Format: HTML5 Ad Unit
+- File Size: < 5MB
+- Technologies: React, TypeScript, Tailwind CSS
+
+## Features
+
+- Interactive map-based quiz
+- Clickable location pins
+- Animated transitions
+- Video player with mute/unmute controls
+- Responsive design within container
+
 ## Project Setup
  ###clone
  

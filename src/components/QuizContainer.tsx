@@ -33,8 +33,13 @@ const QuizContainer: React.FC = () => {
 
   const handleAnswer = (selectedCountry: string) => {
     const currentQuestion = quizState.questions[quizState.currentQuestion];
-    const isCorrect = selectedCountry === currentQuestion.correctAnswer;
-    
+
+    // Normalize both answers to uppercase and trim any extra spaces
+    const normalizedSelectedCountry = selectedCountry.trim().toUpperCase();
+    const normalizedCorrectAnswer = currentQuestion.correctAnswer.trim().toUpperCase();
+
+    const isCorrect = normalizedSelectedCountry === normalizedCorrectAnswer;
+
     setQuizState(prev => ({
       ...prev,
       stage: 'result',
@@ -42,19 +47,21 @@ const QuizContainer: React.FC = () => {
     }));
 
     setTimeout(() => {
-      if (quizState.currentQuestion < quizState.questions.length - 1) {
-        setQuizState(prev => ({
-          ...prev,
-          stage: 'question',
-          currentQuestion: prev.currentQuestion + 1,
-          lastAnswer: null
-        }));
-      } else {
-        setQuizState(prev => ({
-          ...prev,
-          stage: 'video'
-        }));
-      }
+      setQuizState(prev => {
+        if (prev.currentQuestion < prev.questions.length - 1) {
+          return {
+            ...prev,
+            stage: 'question',
+            currentQuestion: prev.currentQuestion + 1,
+            lastAnswer: null
+          };
+        } else {
+          return {
+            ...prev,
+            stage: 'video'
+          };
+        }
+      });
     }, 2000);
   };
 
